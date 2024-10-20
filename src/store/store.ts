@@ -6,7 +6,7 @@ import { feedbackSlice } from "./redux/feedback/feedbackSlice"
 
 // `combineSlices` automatically combines the reducers using
 // their `reducerPath`s, therefore we no longer need to call `combineReducers`.
-const rootReducer = combineSlices(counterSlice, feedbackSlice)
+const rootReducer = combineSlices(counterSlice, feedbackSlice )
 // Infer the `RootState` type from the root reducer
 export type RootState = ReturnType<typeof rootReducer>
 
