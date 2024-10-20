@@ -6,8 +6,6 @@ import GlobalStyles from "styles/GlobalStyles"
 import App from "./App"
 import { store } from "./store/store"
 
-import Homework_15 from "homeworks/Homework_15/Homework_15"
-
 const container = document.getElementById("root")
 
 if (container) {
@@ -17,7 +15,6 @@ if (container) {
       <Provider store={store}>
         <GlobalStyles />
         <App />
-        <Homework_15 />
       </Provider>,
   )
 } else {
