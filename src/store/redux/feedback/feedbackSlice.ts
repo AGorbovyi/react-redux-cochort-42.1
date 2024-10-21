@@ -13,14 +13,18 @@ export const feedbackSlice = createAppSlice({
 
   reducers: create => ({
     addLikes: create.reducer((state: FeedbackInitialState) => {
-      state.likes = ++state.likes
+      state.likes = state.likes + 1
     }),
     addDislikes: create.reducer((state: FeedbackInitialState) => {
-      state.dislikes = ++state.dislikes
+      state.dislikes = state.dislikes + 1
     }),
-    reset: create.reducer((state: FeedbackInitialState) => {
-      ;(state.likes = 0), (state.dislikes = 0)
-    }),
+
+    reset: create.reducer(() => feedbackInitialState),
+
+    // reset: create.reducer((state: FeedbackInitialState) => {
+    //   state.likes = 0
+    //   state.dislikes = 0
+    // }),
   }),
 
   selectors: {

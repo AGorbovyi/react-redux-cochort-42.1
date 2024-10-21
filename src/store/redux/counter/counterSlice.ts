@@ -27,12 +27,15 @@ export const counterSlice = createAppSlice({
     }),
     multiply: create.reducer(
       (state: CounterSliceInitialState, action: PayloadAction<number>) => {
+        console.log(action)
         state.count = Number((state.count * action.payload).toFixed(2))
-      }),
+      },
+    ),
     divide: create.reducer(
       (state: CounterSliceInitialState, action: PayloadAction<number>) => {
         state.count = Number((state.count / action.payload).toFixed(2))
-      }),
+      },
+    ),
   }),
   selectors: {
     count: (state: CounterSliceInitialState) => {
@@ -40,6 +43,7 @@ export const counterSlice = createAppSlice({
     },
   },
 })
+
 // Получаем в counterSliceActions все actions из counter slice.actions
 export const counterSliceActions = counterSlice.actions
 
