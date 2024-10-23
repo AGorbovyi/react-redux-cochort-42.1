@@ -1,7 +1,7 @@
 export interface RandomJoke {
+  id: string
   setup: string
   punchline: string
-  id: string
 }
 
 export interface RandomJokeSliceInitialState {

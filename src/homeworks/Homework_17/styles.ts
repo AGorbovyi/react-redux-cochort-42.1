@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { colors } from "styles/colors"
+import { colors } from "styles/colors";
 
 export const PageWrapper = styled.div`
   display: flex;
@@ -38,6 +38,16 @@ export const JokeText = styled.li`
   font-weight: bold;
 `
 
+export const JokeWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
 export const ButtonControl = styled.div`
   min-width: 800px;
+`
+
+export const ButtonDelete = styled.div`
+width: 100px;
+text-align: left;
 `

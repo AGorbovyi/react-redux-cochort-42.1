@@ -1,8 +1,8 @@
 import { v4 } from "uuid"
 import { createAppSlice } from "store/createAppSlice"
 
-import { RandomJokeSliceInitialState } from "./types"
-import { create } from "domain"
+import { RandomJoke, RandomJokeSliceInitialState } from "./types"
+import { PayloadAction } from "@reduxjs/toolkit"
 
 const randomJokeInitialState: RandomJokeSliceInitialState = {
   data: [],
@@ -28,7 +28,7 @@ export const randomJokeSlice = createAppSlice({
         }
       },
       {
-        pending: (state: RandomJokeSliceInitialState, action) => {
+        pending: (state: RandomJokeSliceInitialState) => {
           state.error = undefined
           state.isLoading = true
         },
@@ -39,6 +39,7 @@ export const randomJokeSlice = createAppSlice({
               id: v4(),
               setup: action.payload.setup,
               punchline: action.payload.punchline,
+              // data: `${action.payload.setup} ${action.payload.punchline}`
             },
           ]
           state.isLoading = false
@@ -52,7 +53,13 @@ export const randomJokeSlice = createAppSlice({
 
     deleteAllJokes: create.reducer(() => randomJokeInitialState),
 
-    // deleteJoke: create.reducer((state: RandomJokeSliceInitialState) => {}),
+    deleteJoke: create.reducer(
+      (state: RandomJokeSliceInitialState, action: PayloadAction<string>) => {
+        state.data = [...state.data].filter(
+          (data: RandomJoke) => data.id != action.payload,
+        )
+      },
+    ),
   }),
 
   selectors: {

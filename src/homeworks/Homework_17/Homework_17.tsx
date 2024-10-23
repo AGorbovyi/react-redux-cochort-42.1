@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "store/hooks"
 import { useEffect } from "react"
 
 import Button from "components/Button/Button"
-import { RandomJoke } from "store/redux/randomJoke/types"
+import { RandomJoke, RandomJokeSliceInitialState } from "store/redux/randomJoke/types"
 import {
   randomJokeSliceAction,
   randomJokeSliceSelectors,
@@ -14,6 +14,8 @@ import {
   JokeContainer,
   JokeText,
   ButtonControl,
+  JokeWrapper,
+  ButtonDelete,
 } from "./styles"
 
 function Homework_17() {
@@ -29,15 +31,22 @@ function Homework_17() {
     dispatch(randomJokeSliceAction.deleteAllJokes())
   }
 
-  // const deleteJoke = () => {
-  //   dispatch(randomJokeSliceAction.deleteJoke())
-  // }
 
-  const randomJoke = data.map((randomJoke: RandomJoke, index: number) => {
+  const randomJoke = data.map((randomJoke: RandomJoke) => {
+    
+    const deleteJoke = () => {
+      dispatch(randomJokeSliceAction.deleteJoke(randomJoke.id))
+    }
+
     return (
-      <JokeText key={randomJoke.id}>
-        {randomJoke.setup} <br /> {randomJoke.punchline}
-      </JokeText>
+      <JokeWrapper key={randomJoke.id}>
+        <JokeText>
+          {randomJoke.setup} <br /> {randomJoke.punchline}
+        </JokeText>
+        <ButtonDelete>
+          <Button name="Delete" onClick={deleteJoke} isDeleteVariant />
+        </ButtonDelete>
+      </JokeWrapper>
     )
   })
 
@@ -51,7 +60,7 @@ function Homework_17() {
     <PageWrapper>
       {data.length > 0 && (
         <ButtonControl>
-          <Button name="Delete All Jokes" onClick={deleteAllJokes} />
+          <Button name="Delete All Jokes" onClick={deleteAllJokes} isDeleteVariant/>
         </ButtonControl>
       )}
       <JokeCard>
